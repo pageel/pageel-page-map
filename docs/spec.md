@@ -40,3 +40,27 @@ Within source code (e.g., `.astro`, `.jsx`), each code block corresponding to a 
     2. **Component**: The actual source file or component used (e.g. `HeroBanner.astro`).
     3. **Props/Data**: Input parameters or data sources.
     4. **Description**: Optional context or notes.
+
+## 5. Storage Convention
+
+PAGE_MAP and BLUEPRINT files MUST be stored in a `.pageel/page-maps/` directory at the repository root. Each page gets its own subdirectory.
+
+- **Location**: `.pageel/page-maps/<page-name>/`
+- **Rationale**: Hidden dot-folder keeps page maps separate from source code, consistent with `.pageelrc.json` (pageel-cms) and familiar patterns like `.vscode/`, `.github/`.
+- **Directory structure**:
+  ```
+  repo/
+  ├── .pageel/
+  │   └── page-maps/
+  │       ├── index/
+  │       │   ├── PAGE_MAP.md
+  │       │   └── BLUEPRINT.md
+  │       ├── about/
+  │       │   ├── PAGE_MAP.md
+  │       │   └── BLUEPRINT.md
+  │       └── ...
+  ├── .pageelrc.json       ← CMS config (if using pageel-cms)
+  └── src/
+  ```
+- **Naming**: Subdirectory name SHOULD match the page route (e.g., `index`, `contact`, `docs-index`).
+- **Discovery**: AI agents SHOULD search `.pageel/page-maps/` first when looking for page structure information.

@@ -5,7 +5,7 @@ description: AI Agent skill to read, manage, and manipulate website visual struc
 
 # Skill: page-map
 
-> **Version**: 1.0.0
+> **Version**: 1.1.0
 
 ## Intent
 Use this skill when attempting to modify page layout, analyze frontend structure, or create new views/components. This skill anchors the AI Agent's structural understanding before analyzing complex source code (`.astro`, `.tsx`, etc.).
@@ -13,7 +13,9 @@ Use this skill when attempting to modify page layout, analyze frontend structure
 ## Instructions
 
 ### 1. Identify Existing Page Maps
-Whenever tasked with analyzing or altering a UI page, ALWAYS search for a `PAGE_MAP.md` and `BLUEPRINT.md` in the current or target directory first.
+Whenever tasked with analyzing or altering a UI page, search for `PAGE_MAP.md` and `BLUEPRINT.md` in this order:
+1. **`.pageel/page-maps/<page-name>/`** — Standard location (preferred).
+2. **Current or target directory** — Fallback for legacy or simple setups.
 
 ### 2. Reading Format
 The structural layout relies on bracketed section names like `[section.subsection]`.
@@ -27,3 +29,4 @@ Search within the target source code for inline tags such as `{/* [section.subse
 When asked to create a new layout:
 1. Create `PAGE_MAP.md` containing ASCII wireframes that illustrate the user's layout vision. Use `[section.subsection]` references.
 2. Create `BLUEPRINT.md` to map those tags to the intended component files and props.
+3. Store both files in `.pageel/page-maps/<page-name>/` at the repository root.
