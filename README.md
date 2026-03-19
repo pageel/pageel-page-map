@@ -1,7 +1,11 @@
-# 🗺️ Pageel Page Map Ecosystem
-
 <div align="center">
-  <p><strong> Bridging the gap between human visualization and AI structural comprehension. </strong></p>
+  <img src="https://raw.githubusercontent.com/pageel/pageel-theme-kit/main/public/icon.svg" alt="Pageel Page Map" width="100" height="auto" />
+  <h1>Pageel Page Map</h1>
+  <p><strong>Bridging the gap between human visual layouts and AI structural comprehension.</strong></p>
+
+[![Astro](https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
+[![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](./LICENSE)
+
 </div>
 
 > **Notice**: This project is built to perfectly integrate with [`pageel-theme-kit`](https://github.com/pageel/pageel-theme-kit) and the upcoming `@pageel/mcp-page-map` server.
