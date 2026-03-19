@@ -12,6 +12,8 @@
 </div>
 
 > **Standalone AI Agent Skill** — Works with any AI coding agent (Cursor, Windsurf, Gemini CLI, Claude Code). Part of the [Pageel](https://github.com/pageel) ecosystem.
+>
+> 🇻🇳 [Phiên bản tiếng Việt](./README.vi.md)
 
 ## 🌟 The Problem
 
