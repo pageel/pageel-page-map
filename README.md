@@ -70,7 +70,7 @@ Then the **BLUEPRINT** maps each tag to real code:
 | Agent navigation accuracy | **3/3 test scenarios passed** |
 | Build impact | **Zero** (comments only) |
 
-> Measured during real-world dogfooding on [paraworkspace.dev](https://paraworkspace.dev) — a production Astro site with 122 pages.
+> Measured during real-world testing on a production Astro site with 120+ pages.
 
 ## 📦 What's Included
 
