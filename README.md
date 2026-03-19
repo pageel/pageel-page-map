@@ -1,15 +1,17 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/pageel/pageel-theme-kit/main/public/icon.svg" alt="Pageel Page Map" width="100" height="auto" />
   <h1>Pageel Page Map</h1>
-  <p><strong>Bridging the gap between human visual layouts and AI structural comprehension.</strong></p>
+  <p><strong>An AI Agent Skill that teaches any coding agent to see and navigate webpage layouts — not just code trees.</strong></p>
+  <p><em>Drop in <code>SKILL.md</code>, map your pages, and watch your AI stop guessing which component to edit.</em></p>
 
+[![AI Skill](https://img.shields.io/badge/AI_Skill-Agent--Ready-8B5CF6?style=for-the-badge)](./SKILL.md)
 [![Astro](https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](./LICENSE)
 [![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)](./docs/spec.md)
 
 </div>
 
-> **Part of the Pageel Ecosystem** — Works standalone or integrated with [`pageel-theme-kit`](https://github.com/pageel/pageel-theme-kit) and the upcoming `@pageel/mcp-page-map` MCP server.
+> **Standalone AI Agent Skill** — Works with any AI coding agent (Cursor, Windsurf, Gemini CLI, Claude Code). Part of the [Pageel](https://github.com/pageel) ecosystem.
 
 ## 🌟 The Problem
 
