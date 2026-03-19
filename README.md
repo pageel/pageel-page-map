@@ -34,19 +34,19 @@ By supplying this shared "mental map," AI Agents become hyper-accurate in UI loc
 │  logo ─── nav(docs, blog, contact) ─── actions(gh, lang) │
 ├──────────────────────────────────────────────────────────┤
 │ [hero]                                                   │
-│ ┌───────────┬──────────────────┬──────────────────┐       │
-│ │ [hero.    │ [hero.content]   │ [hero.visual]    │       │
-│ │  sidebar] │                  │                   │       │
-│ │           │ Welcome to       │ <HeroImage/>      │       │
-│ │ vertical  │ My Project       │                   │       │
-│ │ text      │ tagline + CTA    │                   │       │
-│ └───────────┴──────────────────┴──────────────────┘       │
+│ ┌───────────┬──────────────────┬──────────────────┐      │
+│ │ [hero.    │ [hero.content]   │ [hero.visual]    │      │
+│ │  sidebar] │                  │                  │      │
+│ │           │ Welcome to       │ <HeroImage/>     │      │
+│ │ vertical  │ My Project       │                  │      │
+│ │ text      │ tagline + CTA    │                  │      │
+│ └───────────┴──────────────────┴──────────────────┘      │
 ├──────────────────────────────────────────────────────────┤
-│ [features]                                                │
-│  Feature cards grid (3 columns)                           │
+│ [features]                                               │
+│  Feature cards grid (3 columns)                          │
 ├──────────────────────────────────────────────────────────┤
-│ [footer]                                                  │
-│  links ─── social ─── copyright                           │
+│ [footer]                                                 │
+│  links ─── social ─── copyright                          │
 └──────────────────────────────────────────────────────────┘
 ```
 
