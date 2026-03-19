@@ -1,7 +1,10 @@
-# page-map
+---
+name: page-map
+description: AI Agent skill to read, manage, and manipulate website visual structure using PAGE_MAP.md and BLUEPRINT.md.
+---
 
-> **Name**: page-map
-> **Description**: AI Agent skill to read, manage, and manipulate website visual structure using `PAGE_MAP.md` and `BLUEPRINT.md`.
+# Skill: page-map
+
 > **Version**: 1.0.0
 
 ## Intent
