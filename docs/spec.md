@@ -1,42 +1,42 @@
-# Cấu trúc kỹ thuật định dạng Page Map (Format Specification)
+# Page Map Format Specification
 
-> **Dự án**: pageel-page-map
-> **Phiên bản**: 1.0.0
-> **Ngày cập nhật**: 2026-03-19
+> **Project**: pageel-page-map
+> **Version**: 1.0.0
+> **Updated**: 2026-03-19
 
-Tài liệu này định nghĩa chuẩn định dạng của các tập tin `PAGE_MAP.md` và `BLUEPRINT.md`, cùng quy ước đặt tên nhằm mục đích quy chuẩn hoá quá trình tách biệt và quản lý layout.
+This document defines the standard formats for `PAGE_MAP.md` and `BLUEPRINT.md`, as well as naming conventions for structural layout mapping.
 
 ---
 
-## 1. Naming Convention (Quy ước đặt tên)
-Quy ước đặt tên các phần tử layout tuân theo chuẩn phân cấp và được đặt trong ngoặc vuông: `[section.subsection]`.
-- **Định dạng**: `[<tên-phần-chính>.<tên-phần-phụ>]`
-- **Ví dụ**: `[hero.title]`, `[content.sidebar]`, `[footer.links]`
-- **Mục đích**: Đảm bảo sự đồng bộ trong việc định danh các section của trang trên cả tài liệu sơ đồ và mã nguồn.
+## 1. Naming Convention
+Layout elements follow a hierarchical format enclosed in square brackets: `[section.subsection]`.
+- **Format**: `[<major-section>.<minor-section>]`
+- **Examples**: `[hero.title]`, `[content.sidebar]`, `[footer.links]`
+- **Purpose**: Ensure consistent identification of page sections across layout diagrams and source code.
 
-## 2. Inline Tag Format (Công cụ gắn thẻ mã nguồn)
-Trong mã nguồn (ví dụ `.astro`), mỗi đoạn code tương ứng với layout block cần được đánh dấu bằng chú thích (comment) để các công cụ tự động hoặc AI có thể đối chiếu chính xác với `BLUEPRINT.md`.
-- **Định dạng**: `{/* [section.subsection] */}`
-- **Ví dụ trong Astro/JSX**:
+## 2. Inline Tag Format
+Within source code (e.g., `.astro`, `.jsx`), each code block corresponding to a layout block MUST be marked with a comment so that automation tools or AI can map it to `BLUEPRINT.md`.
+- **Format**: `{/* [section.subsection] */}`
+- **Example in Astro/JSX**:
   ```astro
   {/* [hero.title] */}
-  <h1 class="text-3xl font-bold">Chào mừng đến với hệ sinh thái</h1>
+  <h1 class="text-3xl font-bold">Welcome to the ecosystem</h1>
   ```
 
-## 3. Định dạng `PAGE_MAP.md`
-- **Vai trò**: Cung cấp bức tranh tổng thể về cấu trúc trực quan (wireframe dạng văn bản) của một ứng dụng/trang web. Đây là tệp ổn định (stable) dùng cho góc nhìn con người và tổng quan cho hệ thống AI.
-- **Yêu cầu Format**:
-  - Tên tệp bắt buộc: `PAGE_MAP.md`
-  - Khuyến khích sử dụng Text/ANSI art qua các khối Markdown để minh họa trực quan cho giao diện.
-  - Mỗi section trình bày trong bản vẽ bắt buộc phải kèm theo tag phân định danh theo naming convention: `[section.subsection]`.
+## 3. `PAGE_MAP.md` Specification
+- **Role**: Provides a high-level visual wireframe of an application/page structure layer. It acts as a stable anchor for human understanding and AI system context.
+- **Format Requirements**:
+  - File MUST be named `PAGE_MAP.md`.
+  - Encouraged to use ASCII art or Markdown blocks for visual layout representation.
+  - Every section shown in the visual mapping MUST include an identifier tag conforming to the naming convention: `[section.subsection]`.
 
-## 4. Định dạng `BLUEPRINT.md`
-- **Vai trò**: Bản đồ kỹ thuật giúp mapping (liên kết) giữa cấu trúc không gian (từ `PAGE_MAP.md`) sang các thành phần cụ thể đã được lập trình sẵn. Đây là tệp có khả năng hoán đổi linh hoạt (swappable component mapping).
-- **Yêu cầu Format**:
-  - Tên tệp bắt buộc: `BLUEPRINT.md`
-  - Bắt buộc sử dụng cấu trúc bảng Markdown (Markdown tables) cho mục đích đối chiếu.
-  - **Cấu trúc cột được đề xuất**:
-    1. **Block / Section**: Tên tag theo naming convention (VD: `[hero.title]`).
-    2. **Component**: Tên phần tử/mã nguồn sẽ được sử dụng thực tế (VD: `HeroBanner.astro`).
-    3. **Props/Data**: Tham số dữ liệu đầu vào.
-    4. **Mô tả**: Ghi chú tuỳ chọn.
+## 4. `BLUEPRINT.md` Specification
+- **Role**: Technical architecture map connecting the spatial structure (from `PAGE_MAP.md`) to the actual implemented components/files. This enables swappable components and scalable management.
+- **Format Requirements**:
+  - File MUST be named `BLUEPRINT.md`.
+  - MUST use Markdown tables.
+  - **Recommended Columns**:
+    1. **Section**: The tag based on the naming convention (e.g. `[hero.title]`).
+    2. **Component**: The actual source file or component used (e.g. `HeroBanner.astro`).
+    3. **Props/Data**: Input parameters or data sources.
+    4. **Description**: Optional context or notes.
