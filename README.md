@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/pageel/pageel-theme-kit/main/public/icon.svg" alt="Pageel Page Map" width="100" height="auto" />
-  <h1>Pageel Page Map</h1>
+  <h1>Pageel Page Map Skill</h1>
   <p><strong>An AI Agent Skill that teaches any coding agent to see and navigate webpage layouts — not just code trees.</strong></p>
   <p><em>Drop in <code>SKILL.md</code>, map your pages, and watch your AI stop guessing which component to edit.</em></p>
 

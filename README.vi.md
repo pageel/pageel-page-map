@@ -1,6 +1,6 @@
 <div align="center">
   <img src="https://raw.githubusercontent.com/pageel/pageel-theme-kit/main/public/icon.svg" alt="Pageel Page Map" width="100" height="auto" />
-  <h1>Pageel Page Map</h1>
+  <h1>Pageel Page Map Skill</h1>
   <p><strong>Một AI Agent Skill giúp bất kỳ coding agent nào nhìn thấy và điều hướng layout trang web — thay vì chỉ thấy danh mục cây code.</strong></p>
   <p><em>Chỉ cần thêm <code>SKILL.md</code>, map các trang, và để AI ngừng đoán mò khi sửa component.</em></p>
 
