@@ -116,3 +116,28 @@ Page maps and component maps MUST be linked bidirectionally:
 - **Component → Page**: The `INDEX.md` **Used by** column tracks which pages use each component.
 
 This ensures agents can navigate between abstraction layers without guessing.
+
+## 8. Additional Inline Tag Formats
+
+While `{/* */}` is the standard for JSX/Astro, other frameworks use different comment syntax:
+
+| Framework       | Inline Tag Format                     | Example                                |
+| :-------------- | :------------------------------------ | :------------------------------------- |
+| Astro / JSX     | `{/* [section.tag] */}`               | `{/* [hero.title] */}`                 |
+| HTML            | `<!-- [section.tag] -->`              | `<!-- [hero.title] -->`                |
+| Vue (template)  | `<!-- [section.tag] -->`              | `<!-- [hero.title] -->`                |
+| Svelte          | `<!-- [section.tag] -->`              | `<!-- [hero.title] -->`                |
+| PHP             | `<?php /* [section.tag] */ ?>`        | `<?php /* [hero.title] */ ?>`          |
+
+The key rule: the tag `[section.tag]` is always wrapped in the closest available comment syntax.
+
+## 9. Migration from v1.x to v2.0
+
+Users upgrading from v1.x (flat directory structure) should:
+
+1. **Create subdirectories**: Add `pages/` and `components/` inside `.pageel/page-maps/`.
+2. **Move page maps**: Move each `<page-name>/` folder into `pages/<page-name>/`.
+3. **Create component maps**: For each reusable component, create a new directory under `components/<ComponentName>/` with its own `PAGE_MAP.md` and `BLUEPRINT.md`.
+4. **Update BLUEPRINTs**: Add `Hydration` and `Component Map` columns to all page-level BLUEPRINTs.
+5. **Create INDEX.md**: Add `INDEX.md` at `.pageel/page-maps/` root to track coverage.
+6. **Update SKILL.md**: Replace the v1.x SKILL.md with the v2.0 version.
