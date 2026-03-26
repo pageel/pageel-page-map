@@ -1,22 +1,27 @@
 # Page Map Format Specification
 
 > **Project**: pageel-page-map
-> **Version**: 1.0.0
-> **Updated**: 2026-03-19
+> **Version**: 2.0.0
+> **Updated**: 2026-03-26
 
-This document defines the standard formats for `PAGE_MAP.md` and `BLUEPRINT.md`, as well as naming conventions for structural layout mapping.
+This document defines the standard formats for `PAGE_MAP.md`, `BLUEPRINT.md`, and `INDEX.md`, as well as naming conventions for structural layout mapping.
 
 ---
 
 ## 1. Naming Convention
-Layout elements follow a hierarchical format enclosed in square brackets: `[section.subsection]`.
+
+Layout elements follow a hierarchical format enclosed in square brackets: `[Section.Subsection]`.
+
 - **Format**: `[<major-section>.<minor-section>]`
-- **Examples**: `[hero.title]`, `[content.sidebar]`, `[footer.links]`
-- **Purpose**: Ensure consistent identification of page sections across layout diagrams and source code.
+- **Page maps**: `[page.section]` — e.g., `[index.hero]`, `[features.pricing]`
+- **Component maps**: `[Component.Section]` — e.g., `[Hero.TechStackHeader]`, `[Calculator.ResultCard]`
+- **Purpose**: Ensure consistent identification of layout zones across diagrams and source code.
 
 ## 2. Inline Tag Format
-Within source code (e.g., `.astro`, `.jsx`), each code block corresponding to a layout block MUST be marked with a comment so that automation tools or AI can map it to `BLUEPRINT.md`.
-- **Format**: `{/* [section.subsection] */}`
+
+Within source code (e.g., `.astro`, `.jsx`, `.tsx`), each code block corresponding to a layout zone MUST be marked with a comment so that automation tools or AI can map it to `BLUEPRINT.md`.
+
+- **Format**: `{/* [Section.Subsection] */}`
 - **Example in Astro/JSX**:
   ```astro
   {/* [hero.title] */}
@@ -24,43 +29,90 @@ Within source code (e.g., `.astro`, `.jsx`), each code block corresponding to a 
   ```
 
 ## 3. `PAGE_MAP.md` Specification
-- **Role**: Provides a high-level visual wireframe of an application/page structure layer. It acts as a stable anchor for human understanding and AI system context.
+
+- **Role**: Provides a high-level visual wireframe of a page or component structure. It acts as a stable anchor for human understanding and AI agent context.
 - **Format Requirements**:
   - File MUST be named `PAGE_MAP.md`.
-  - Encouraged to use ASCII art or Markdown blocks for visual layout representation.
-  - Every section shown in the visual mapping MUST include an identifier tag conforming to the naming convention: `[section.subsection]`.
+  - Use ASCII art or Markdown blocks for visual layout representation.
+  - Every section shown in the visual mapping MUST include an identifier tag conforming to the naming convention: `[Section.Subsection]`.
+  - For page-level maps, include cross-reference arrows to component maps: `[index.hero] → components/Hero/`
+  - For component-level maps, visualize the internal HTML structure zones, not just a placeholder box.
 
 ## 4. `BLUEPRINT.md` Specification
+
 - **Role**: Technical architecture map connecting the spatial structure (from `PAGE_MAP.md`) to the actual implemented components/files. This enables swappable components and scalable management.
 - **Format Requirements**:
   - File MUST be named `BLUEPRINT.md`.
   - MUST use Markdown tables.
-  - **Recommended Columns**:
-    1. **Section**: The tag based on the naming convention (e.g. `[hero.title]`).
-    2. **Component**: The actual source file or component used (e.g. `HeroBanner.astro`).
-    3. **Props/Data**: Input parameters or data sources.
-    4. **Description**: Optional context or notes.
+  - **Required Columns (page-level)**:
+    1. **Section**: The tag based on the naming convention (e.g. `[index.hero]`).
+    2. **Source**: The actual source file or component used (e.g. `src/components/Hero.astro`).
+    3. **Hydration**: Framework directive — `client:load`, `client:visible`, `client:idle`, or `Static`.
+    4. **Component Map**: Relative link to the component's `PAGE_MAP.md`, or `—` for inline sections.
+  - **Required Columns (component-level)**:
+    1. **Section**: The tag (e.g. `[Hero.Title]`).
+    2. **Element**: HTML element or sub-component (e.g. `<h1>`, `<div.grid>`).
+    3. **Props / Data**: Input parameters or data sources.
+    4. **Notes**: Optional context or implementation notes.
 
 ## 5. Storage Convention
 
-PAGE_MAP and BLUEPRINT files MUST be stored in a `.pageel/page-maps/` directory at the repository root. Each page gets its own subdirectory.
+PAGE_MAP and BLUEPRINT files MUST be stored in a `.pageel/page-maps/` directory at the repository root, organized by type.
 
-- **Location**: `.pageel/page-maps/<page-name>/`
-- **Rationale**: Hidden dot-folder keeps page maps separate from source code, consistent with `.pageelrc.json` (pageel-cms) and familiar patterns like `.vscode/`, `.github/`.
-- **Directory structure**:
-  ```
-  repo/
-  ├── .pageel/
-  │   └── page-maps/
-  │       ├── index/
-  │       │   ├── PAGE_MAP.md
-  │       │   └── BLUEPRINT.md
-  │       ├── about/
-  │       │   ├── PAGE_MAP.md
-  │       │   └── BLUEPRINT.md
-  │       └── ...
-  ├── .pageelrc.json       ← CMS config (if using pageel-cms)
-  └── src/
-  ```
-- **Naming**: Subdirectory name SHOULD match the page route (e.g., `index`, `contact`, `docs-index`).
-- **Discovery**: AI agents SHOULD search `.pageel/page-maps/` first when looking for page structure information.
+- **Pages** → `.pageel/page-maps/pages/<page-name>/`
+- **Components** → `.pageel/page-maps/components/<ComponentName>/`
+- **Site Index** → `.pageel/page-maps/INDEX.md`
+
+**Naming rules:**
+- Page directory names use **lowercase** matching the route slug (e.g., `index`, `features`, `contact`).
+- Component directory names use **PascalCase** matching the component filename (e.g., `Hero`, `FeatureGrid`, `Calculator`).
+
+**Directory structure:**
+```
+repo/
+├── .pageel/
+│   └── page-maps/
+│       ├── INDEX.md           ← Site-wide coverage tracker
+│       ├── pages/
+│       │   ├── index/
+│       │   │   ├── PAGE_MAP.md
+│       │   │   └── BLUEPRINT.md
+│       │   └── features/
+│       │       ├── PAGE_MAP.md
+│       │       └── BLUEPRINT.md
+│       └── components/
+│           ├── Hero/
+│           │   ├── PAGE_MAP.md
+│           │   └── BLUEPRINT.md
+│           └── Navbar/
+│               ├── PAGE_MAP.md
+│               └── BLUEPRINT.md
+├── .pageelrc.json       ← CMS config (if using pageel-cms)
+└── src/
+```
+
+**Discovery**: AI agents SHOULD search `.pageel/page-maps/` first when looking for page structure information.
+
+## 6. `INDEX.md` Specification
+
+- **Role**: Site-wide coverage map tracking which pages and components have been mapped.
+- **Location**: `.pageel/page-maps/INDEX.md`
+- **Format Requirements**:
+  - Separate tables for **Pages** and **Components**.
+  - Components table includes a **Used by** column listing pages that use the component.
+  - Each table ends with a **progress bar** using `█` (filled) and `░` (empty), total 20 characters.
+  - Formula: `filled = round(mapped / total * 20)`, remainder is `░`. Followed by `X/Y (Z%)`.
+- **Status icons**:
+  - `✅ Mapped` — PAGE_MAP.md + BLUEPRINT.md completed.
+  - `⬜ Pending` — Map not yet created.
+  - `⏭️ Skip` — Utility component with no visual structure (e.g., SEO head tags, image optimizers).
+- **Shared components**: A component needs only one map at `components/<Name>/`. Page BLUEPRINTs link to it — no duplicates.
+
+## 7. Cross-Referencing
+
+Page maps and component maps MUST be linked bidirectionally:
+
+- **Page → Component**: In the page's `PAGE_MAP.md`, add arrow notation: `[index.hero] → components/Hero/`. In the page's `BLUEPRINT.md`, add a **Component Map** column linking to the component's `PAGE_MAP.md`.
+- **Component → Page**: The `INDEX.md` **Used by** column tracks which pages use each component.
+
+This ensures agents can navigate between abstraction layers without guessing.

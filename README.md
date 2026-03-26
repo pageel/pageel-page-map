@@ -7,7 +7,7 @@
 [![AI Skill](https://img.shields.io/badge/AI_Skill-Agent--Ready-8B5CF6?style=for-the-badge)](./SKILL.md)
 [![Astro](https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)](./docs/spec.md)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue?style=for-the-badge)](./docs/spec.md)
 
 </div>
 
@@ -23,10 +23,11 @@ This often leads to AI altering the wrong component or losing track of the struc
 
 ## 🚀 The Solution
 
-The **Page Map** architecture solves this by providing **two anchor files**:
+The **Page Map** architecture solves this by providing **three anchor files**:
 
 1. **`PAGE_MAP.md`** — An intuitive ASCII wireframe showing the exact visual layout geometry, identifying sections with tags like `[hero.title]`.
 2. **`BLUEPRINT.md`** — A mapping table linking those tags directly to the actual source code (`src/components/Hero.astro`).
+3. **`INDEX.md`** — A site-wide coverage tracker with progress bars showing which pages and components are mapped.
 
 By supplying this shared "mental map," AI Agents become hyper-accurate in UI localization, and developers can instantly swap themes without breaking content structures.
 
@@ -80,7 +81,11 @@ Then the **BLUEPRINT** maps each tag to real code:
 |:-----|:------------|
 | `SKILL.md` | Drop-in AI agent instructions — makes any agent understand page map context |
 | `docs/spec.md` | Complete format specification (naming, inline tags, storage convention) |
-| `templates/` | Blank `PAGE_MAP.md` + `BLUEPRINT.md` templates |
+| `templates/PAGE_MAP.md` | Page-level wireframe template with cross-reference arrows |
+| `templates/BLUEPRINT.md` | Page-level blueprint template with Hydration + Component Map columns |
+| `templates/COMPONENT_MAP.md` | Component-level wireframe template for internal layout zones |
+| `templates/COMPONENT_BLUEPRINT.md` | Component-level blueprint template |
+| `templates/INDEX.md` | Site-wide coverage tracker template with progress bars |
 | `examples/` | Real-world mappings: Landing Page, Documentation Site, Blog |
 
 ## 🚀 Quick Start
@@ -99,18 +104,26 @@ cp SKILL.md /path/to/workspace/.agent/skills/page-map/SKILL.md
 
 ### 2. Create Page Maps
 
-Store page maps in `.pageel/page-maps/` at your repository root:
+Store page maps in `.pageel/page-maps/` at your repository root, organized by type:
 
 ```
 your-project/
 ├── .pageel/
 │   └── page-maps/
-│       ├── index/
-│       │   ├── PAGE_MAP.md    ← Visual wireframe
-│       │   └── BLUEPRINT.md   ← Component mapping
-│       └── about/
-│           ├── PAGE_MAP.md
-│           └── BLUEPRINT.md
+│       ├── INDEX.md            ← Site-wide coverage tracker
+│       ├── pages/
+│       │   ├── index/
+│       │   │   ├── PAGE_MAP.md ← Visual wireframe
+│       │   │   └── BLUEPRINT.md← Component mapping
+│       │   └── about/
+│       │       ├── PAGE_MAP.md
+│       │       └── BLUEPRINT.md
+│       └── components/
+│           ├── Hero/
+│           │   ├── PAGE_MAP.md ← Internal layout zones
+│           │   └── BLUEPRINT.md
+│           └── Navbar/
+│               └── ...
 ├── .pageelrc.json              ← (optional) CMS config
 └── src/
 ```
@@ -137,10 +150,12 @@ Now when you say _"fix the CTA in hero"_, the agent will:
 ## 📐 Format Specification
 
 See [`docs/spec.md`](./docs/spec.md) for the complete specification covering:
-- Section naming convention: `[section.subsection]`
-- Inline tag format: `{/* [section.subsection] */}`
-- Storage convention: `.pageel/page-maps/<page-name>/`
-- PAGE_MAP and BLUEPRINT file requirements
+- Section naming convention: `[page.section]` for pages, `[Component.Section]` for components
+- Inline tag format: `{/* [Section.Subsection] */}`
+- Storage convention: `pages/` for routes, `components/` for reusable units
+- Cross-referencing rules between page and component maps
+- INDEX.md site-wide coverage tracking with progress bars
+- PAGE_MAP, BLUEPRINT, and INDEX file requirements
 
 ## 🤝 Contributing
 

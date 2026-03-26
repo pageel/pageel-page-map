@@ -7,7 +7,7 @@
 [![AI Skill](https://img.shields.io/badge/AI_Skill-Agent--Ready-8B5CF6?style=for-the-badge)](./SKILL.md)
 [![Astro](https://img.shields.io/badge/Astro-FF5D01?style=for-the-badge&logo=astro&logoColor=white)](https://astro.build)
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg?style=for-the-badge)](./LICENSE)
-[![Version](https://img.shields.io/badge/version-1.0.0-blue?style=for-the-badge)](./docs/spec.md)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue?style=for-the-badge)](./docs/spec.md)
 
 </div>
 
@@ -23,10 +23,11 @@ Khi AI Agent sửa trang web, chúng chỉ thấy hàng loạt file `.astro`, `.
 
 ## 🚀 Giải pháp
 
-Kiến trúc **Page Map** giải quyết vấn đề này bằng **hai file neo**:
+Kiến trúc **Page Map** giải quyết vấn đề này bằng **ba file neo**:
 
 1. **`PAGE_MAP.md`** — Wireframe ASCII trực quan thể hiện hình học layout, đánh dấu các section bằng tag như `[hero.title]`.
 2. **`BLUEPRINT.md`** — Bảng ánh xạ liên kết các tag đó trực tiếp tới source code (`src/components/Hero.astro`).
+3. **`INDEX.md`** — Bản đồ tổng thể theo dõi tiến độ page-map hóa với thanh tiến trình trực quan.
 
 Bằng cách cung cấp "bản đồ tư duy" chung này, AI Agent trở nên siêu chính xác khi định vị UI, và developer có thể hoán đổi theme mà không phá vỡ cấu trúc nội dung.
 
@@ -76,12 +77,16 @@ Sau đó **BLUEPRINT** ánh xạ mỗi tag tới code thực:
 
 ## 📦 Bao gồm gì
 
-| File | Mô tả |
-|:-----|:------|
-| `SKILL.md` | Hướng dẫn AI agent — giúp bất kỳ agent nào hiểu page map |
-| `docs/spec.md` | Đặc tả format đầy đủ (đặt tên, inline tags, quy ước lưu trữ) |
-| `templates/` | Template trống `PAGE_MAP.md` + `BLUEPRINT.md` |
-| `examples/` | Ví dụ thực tế: Landing Page, Trang Tài liệu, Blog |
+| File                               | Mô tả                                                            |
+|:-----------------------------------|:-----------------------------------------------------------------|
+| `SKILL.md`                         | Hướng dẫn AI agent — giúp bất kỳ agent nào hiểu page map        |
+| `docs/spec.md`                     | Đặc tả format đầy đủ (đặt tên, inline tags, quy ước lưu trữ)   |
+| `templates/PAGE_MAP.md`            | Template wireframe trang với mũi tên tham chiếu chéo            |
+| `templates/BLUEPRINT.md`           | Template blueprint trang với cột Hydration + Component Map       |
+| `templates/COMPONENT_MAP.md`       | Template wireframe component cho bố cục nội bộ                   |
+| `templates/COMPONENT_BLUEPRINT.md` | Template blueprint component                                     |
+| `templates/INDEX.md`               | Template bản đồ tổng thể với thanh tiến trình                    |
+| `examples/`                        | Ví dụ thực tế: Landing Page, Trang Tài liệu, Blog               |
 
 ## 🚀 Bắt đầu nhanh
 
@@ -99,18 +104,26 @@ cp SKILL.md /path/to/workspace/.agent/skills/page-map/SKILL.md
 
 ### 2. Tạo Page Maps
 
-Lưu page maps trong `.pageel/page-maps/` ở root của repo:
+Lưu page maps trong `.pageel/page-maps/` ở root của repo, phân loại theo Pages và Components:
 
 ```
 your-project/
 ├── .pageel/
 │   └── page-maps/
-│       ├── index/
-│       │   ├── PAGE_MAP.md    ← Wireframe trực quan
-│       │   └── BLUEPRINT.md   ← Ánh xạ component
-│       └── about/
-│           ├── PAGE_MAP.md
-│           └── BLUEPRINT.md
+│       ├── INDEX.md            ← Bản đồ tổng thể + tiến trình
+│       ├── pages/
+│       │   ├── index/
+│       │   │   ├── PAGE_MAP.md ← Wireframe trực quan
+│       │   │   └── BLUEPRINT.md← Ánh xạ component
+│       │   └── about/
+│       │       ├── PAGE_MAP.md
+│       │       └── BLUEPRINT.md
+│       └── components/
+│           ├── Hero/
+│           │   ├── PAGE_MAP.md ← Bố cục nội bộ component
+│           │   └── BLUEPRINT.md
+│           └── Navbar/
+│               └── ...
 ├── .pageelrc.json              ← (tuỳ chọn) CMS config
 └── src/
 ```
@@ -137,10 +150,12 @@ Giờ khi bạn nói _"sửa CTA trong hero"_, agent sẽ:
 ## 📐 Đặc tả Format
 
 Xem [`docs/spec.md`](./docs/spec.md) để biết đặc tả đầy đủ:
-- Quy ước đặt tên section: `[section.subsection]`
-- Format inline tag: `{/* [section.subsection] */}`
-- Quy ước lưu trữ: `.pageel/page-maps/<page-name>/`
-- Yêu cầu file PAGE_MAP và BLUEPRINT
+- Quy ước đặt tên: `[page.section]` cho trang, `[Component.Section]` cho component
+- Format inline tag: `{/* [Section.Subsection] */}`
+- Quy ước lưu trữ: `pages/` cho route, `components/` cho component tái sử dụng
+- Quy tắc tham chiếu chéo giữa page map và component map
+- Theo dõi tiến độ toàn bộ site bằng INDEX.md với thanh tiến trình
+- Yêu cầu file PAGE_MAP, BLUEPRINT, và INDEX
 
 ## 🤝 Đóng góp
 

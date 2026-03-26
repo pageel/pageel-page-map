@@ -1,10 +1,10 @@
 # BLUEPRINT: [Page Name]
 
-| Section | Component | Props / Data | Description |
-| --- | --- | --- | --- |
-| `[header.nav]` | `src/components/Header.astro` | `links={navData}` | Main navigation bar |
-| `[hero.title]` | `src/components/Hero.astro` | `title="Welcome"` | Primary headline |
-| `[hero.subtitle]`| `src/components/Hero.astro` | `subtitle="..."` | Secondary text |
-| `[hero.cta]` | `src/components/Button.astro` | `href="/get-started"` | Call to action button |
-| `[content.main_area]` | `src/pages/index.astro` | | Main content rendering area |
-| `[footer.links]` | `src/components/Footer.astro` | | Copyright and hyperlinks |
+> Page-level blueprint linking sections to source components.
+
+| Section              | Source                         | Hydration      | Component Map                                     |
+| :------------------- | :----------------------------- | :------------- | :------------------------------------------------ |
+| `[page.nav]`         | `src/components/Navbar.astro`  | Static         | [components/Navbar/](../../components/Navbar/PAGE_MAP.md) |
+| `[page.hero]`        | `src/components/Hero.astro`    | Static         | [components/Hero/](../../components/Hero/PAGE_MAP.md)     |
+| `[page.content]`     | `src/pages/index.astro`        | —              | — (inline: main content area)                     |
+| `[page.footer]`      | `src/components/Footer.astro`  | Static         | — (simple, no internal map needed)                |

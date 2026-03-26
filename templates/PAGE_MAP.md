@@ -1,19 +1,18 @@
 # PAGE VIEW: [Page Name]
 
-<!-- Hint: Use simple text outlines to draft the visual layout structure. -->
+<!-- Page-level map: shows component composition and ordering. -->
+<!-- Use → arrows to reference component maps for detailed internals. -->
 
 ┌───────────────────────────────────────┐
-│              [header.nav]             │
+│            [page.nav]                 │ → components/Navbar/
 ├───────────────────────────────────────┤
 │                                       │
-│             [hero.title]              │
-│            [hero.subtitle]            │
-│              [hero.cta]               │
+│           [page.hero]                 │ → components/Hero/
 │                                       │
 ├───────────────────────────────────────┤
 │                                       │
-│          [content.main_area]          │
+│          [page.content]               │
 │                                       │
 ├───────────────────────────────────────┤
-│             [footer.links]            │
+│           [page.footer]               │
 └───────────────────────────────────────┘
